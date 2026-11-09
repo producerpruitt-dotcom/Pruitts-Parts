@@ -3,6 +3,17 @@
 Type what you need, see where it's stored — **Area › Spot › Bin**, the way the Home Depot app shows *Aisle › Bay*.
 Each person signs in and has their own inventory. Works in Safari on a MacBook and on an iPhone (add it to the Home Screen and it opens like an app).
 
+## Hosted version (no install)
+
+`hosted/pruitts-parts.html` is the same app published as a claude.ai page, so nobody installs or configures anything:
+https://claude.ai/artifact/V1hi6ttuoZv7Sv6Puh2Sx5
+
+- Sign-in is handled by Claude: each person needs a free claude.ai account and is shared into the page as an **Editor** (Share menu). Viewers who are not Editors can open the page but can't save.
+- Each person's items are stored under their own sign-in and are private — even from the page owner.
+- To change it, edit `hosted/pruitts-parts.html` and republish it to the same link.
+
+The Node server below is the self-hosted alternative, with its own email/password accounts and no Claude account needed.
+
 ## What it does
 
 - **Search** — big search bar at the top of every screen. Results update as you type. Matches the item name, notes, and location ("truck" lists everything in the truck). "screw" finds "screws"; `1/4"` works.
