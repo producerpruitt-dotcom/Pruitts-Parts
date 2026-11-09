@@ -1,0 +1,23 @@
+rules_version = '2';
+// Each signed-in person can read and write only their own items.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/items/{itemId} {
+      function isOwner() { return request.auth != null && request.auth.uid == uid; }
+      function validItem() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['name', 'kind', 'qty', 'notes', 'area', 'spot', 'bin', 'updated'])
+          && d.name is string && d.name.size() > 0 && d.name.size() <= 200
+          && d.kind in ['tool', 'part', 'hardware']
+          && d.qty is int && d.qty >= 0 && d.qty <= 1000000
+          && d.notes is string && d.notes.size() <= 2000
+          && d.area is string && d.area.size() <= 80
+          && d.spot is string && d.spot.size() <= 80
+          && d.bin is string && d.bin.size() <= 80
+          && d.updated is string && d.updated.size() <= 40;
+      }
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner() && validItem();
+    }
+  }
+}
