@@ -1,0 +1,12 @@
+{
+  "name": "pruitts-parts",
+  "version": "1.0.0",
+  "description": "Find where every part, tool and piece of hardware lives in your shop. Multi-user, runs on Mac and iPhone.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
+  }
+}
